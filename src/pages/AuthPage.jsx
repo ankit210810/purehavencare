@@ -84,23 +84,6 @@ export default function AuthPage({ navigate }) {
     }
   };
 
-  // Demo Credentials for quick presentation
-  const fillDemoCustomer = () => {
-    setEmail('customer@purehaven.in');
-    setPassword('password123');
-    setMode('login');
-    setErrorMsg('');
-    setUnconfirmedEmail('');
-  };
-
-  const fillDemoAdmin = () => {
-    setEmail('admin@purehaven.in');
-    setPassword('admin123');
-    setMode('login');
-    setErrorMsg('');
-    setUnconfirmedEmail('');
-  };
-
   return (
     <div className="min-h-screen bg-cream-50/80 py-16 flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white rounded-3xl border border-cream-200 shadow-premium p-8 space-y-6 animate-fade-in">
@@ -326,29 +309,6 @@ export default function AuthPage({ navigate }) {
                 <ArrowRight className="w-4 h-4 text-butter-400" />
               </button>
             </form>
-
-            {/* Quick Demo Accounts for College Presentation */}
-            <div className="pt-4 border-t border-cream-100 space-y-2">
-              <p className="text-[11px] font-bold uppercase tracking-wider text-charcoal-500 text-center">
-                College Presentation Quick Test Accounts
-              </p>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <button
-                  type="button"
-                  onClick={fillDemoCustomer}
-                  className="p-2 rounded-xl bg-cream-100 hover:bg-cream-200 text-forest-950 font-semibold text-center border border-cream-200"
-                >
-                  Fill Customer Demo
-                </button>
-                <button
-                  type="button"
-                  onClick={fillDemoAdmin}
-                  className="p-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 font-semibold text-center border border-amber-200"
-                >
-                  Fill Admin Demo
-                </button>
-              </div>
-            </div>
           </>
         )}
 

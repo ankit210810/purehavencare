@@ -291,17 +291,6 @@ export default function Navbar({ currentRoute, navigate, onOpenSearch, onOpenAI 
                           </button>
                         )}
 
-                        {/* Switch Role Quick Button for College Evaluation */}
-                        <button
-                          type="button"
-                          onClick={() => switchRole(isAdmin ? 'customer' : 'admin')}
-                          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-charcoal-600 hover:bg-cream-100 transition-colors"
-                          title="Quick toggle for testing admin features"
-                        >
-                          <Compass className="w-3.5 h-3.5 text-charcoal-400" />
-                          <span>Switch to {isAdmin ? 'Customer' : 'Admin'} Mode</span>
-                        </button>
-
                         <button
                           type="button"
                           onClick={() => {

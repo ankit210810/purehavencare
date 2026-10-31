@@ -42,15 +42,15 @@ export default function CheckoutPage({ navigate, onOrderPlaced }) {
   const defaultAddr = (user?.addresses && user.addresses[0]) || {};
 
   const [formData, setFormData] = useState({
-    fullName: user?.fullName || 'Arjun Mehta',
-    email: user?.email || 'customer@purehaven.in',
-    phone: user?.phone || '9142166210',
-    addressLine1: defaultAddr.addressLine1 || 'Villa 14, Whispering Pines, Indiranagar',
-    addressLine2: defaultAddr.addressLine2 || 'Near Defense Colony Park',
+    fullName: user?.fullName || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    addressLine1: defaultAddr.addressLine1 || '',
+    addressLine2: defaultAddr.addressLine2 || '',
     city: defaultAddr.city || 'Bengaluru',
     state: defaultAddr.state || 'Karnataka',
     pincode: defaultAddr.pincode || pincode || '560038',
-    deliveryInstructions: 'Please do not leave in direct sunlight. Ring bell upon arrival.'
+    deliveryInstructions: ''
   });
 
   const [shippingMethod, setShippingMethod] = useState('standard'); // 'standard' | 'priority'

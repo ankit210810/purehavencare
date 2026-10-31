@@ -16,9 +16,9 @@ import { localDb } from '../services/supabaseClient';
 import { fetchAllOrders } from '../services/orderService';
 
 export default function OrderTrackingPage({ initialOrderNumber = '', navigate }) {
-  const [searchInput, setSearchInput] = useState(initialOrderNumber || 'PH-84291');
+  const [searchInput, setSearchInput] = useState(initialOrderNumber || '');
   const [currentOrder, setCurrentOrder] = useState(null);
-  const [hasSearched, setHasSearched] = useState(false);
+  const [hasSearched, setHasSearched] = useState(Boolean(initialOrderNumber));
 
   const lookupOrder = async (numberToFind) => {
     const clean = (numberToFind || searchInput).trim().toUpperCase();
@@ -41,31 +41,7 @@ export default function OrderTrackingPage({ initialOrderNumber = '', navigate })
     if (found) {
       setCurrentOrder(found);
     } else {
-      // Mock order fallback for realistic demo/testing if not found in db
-      setCurrentOrder({
-        orderNumber: clean,
-        customerName: 'Arjun Mehta',
-        customerPhone: '9142166210',
-        customerEmail: 'purehavencare26@gmail.com',
-        status: 'shipped',
-        paymentStatus: 'paid',
-        paymentMethod: 'razorpay',
-        total: 1980,
-        courierName: 'PureHaven ColdChain Express',
-        trackingNumber: 'CC-914216',
-        estimatedDelivery: 'Tomorrow by 2:00 PM',
-        deliveryAddress: {
-          line1: 'Villa 14, Whispering Pines, Indiranagar',
-          city: 'Bengaluru',
-          state: 'Karnataka',
-          pincode: '560038'
-        },
-        items: [
-          { name: 'PureHaven Reserve Farmhouse Cheddar', weight: '250g', quantity: 1, price: 680 },
-          { name: 'Black Summer Truffle Farmhouse Gouda', weight: '200g', quantity: 1, price: 840 },
-          { name: 'Golden Cultured A2 Farmhouse Butter', weight: '250g', quantity: 1, price: 450 }
-        ]
-      });
+      setCurrentOrder(null);
     }
   };
 
@@ -275,6 +251,19 @@ export default function OrderTrackingPage({ initialOrderNumber = '', navigate })
               </div>
             </div>
 
+          </div>
+        )}
+
+        {/* Not Found State */}
+        {!currentOrder && hasSearched && (
+          <div className="bg-white rounded-3xl border border-cream-200 shadow-soft p-10 text-center max-w-lg mx-auto space-y-3 animate-fade-in">
+            <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-800 flex items-center justify-center mx-auto">
+              <AlertCircle className="w-7 h-7 text-amber-700" />
+            </div>
+            <h3 className="font-serif text-xl font-bold text-forest-950">Shipment Not Found</h3>
+            <p className="text-xs text-charcoal-600 leading-relaxed">
+              No active shipment matches "{searchInput}". Please double check your order reference number from your receipt email.
+            </p>
           </div>
         )}
 

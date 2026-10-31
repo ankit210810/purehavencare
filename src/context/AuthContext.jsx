@@ -3,32 +3,23 @@ import { supabase, isSupabaseConfigured, localDb } from '../services/supabaseCli
 
 const AuthContext = createContext(null);
 
-const DEFAULT_USER = {
-  id: 'usr_guest_demo',
-  email: 'customer@purehaven.in',
-  fullName: 'Arjun Mehta',
-  phone: '9142166210',
-  role: 'customer',
-  avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
-  addresses: [
-    {
-      id: 'addr-1',
-      fullName: 'Arjun Mehta',
-      phone: '9142166210',
-      addressLine1: 'Villa 14, Whispering Pines, Indiranagar 100ft Road',
-      addressLine2: 'Near Defense Colony Park',
-      city: 'Bengaluru',
-      state: 'Karnataka',
-      pincode: '560038',
-      isDefault: true
-    }
-  ]
-};
-
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('purehaven_current_user');
-    return saved ? JSON.parse(saved) : DEFAULT_USER;
+    try {
+      const saved = localStorage.getItem('purehaven_current_user');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Clear legacy dummy test user so fresh visitors start as a guest
+        if (parsed?.id === 'usr_guest_demo' || parsed?.email === 'customer@purehaven.in') {
+          localStorage.removeItem('purehaven_current_user');
+          return null;
+        }
+        return parsed;
+      }
+      return null;
+    } catch {
+      return null;
+    }
   });
 
   const [loading, setLoading] = useState(false);
