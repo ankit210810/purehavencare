@@ -4,6 +4,9 @@
 
 PureHaven is a full-stack, enterprise-grade e-commerce application specializing in handcrafted cave-aged cheeses, slow-churned A2 farmhouse butter, and curated gourmet dairy hampers.
 
+- **Production Deployment:** Live on Vercel Global Edge Network
+- **GitHub Repository:** [https://github.com/ankit210810/purehavencare](https://github.com/ankit210810/purehavencare)
+
 ---
 
 ## 🧀 Project Highlights
